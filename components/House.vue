@@ -2,7 +2,7 @@
 import Card from 'primevue/card';
 </script>
 <template>
-    <div class="col">
+    <div class="col border-2 border-blue-500">
 
         <div class="flex align-items-center justify-content-center">
             <Card style="width: 22em">
