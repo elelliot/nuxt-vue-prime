@@ -42,9 +42,7 @@ const responsiveOptions = ref([
             <div class="flex justify-content-center">
 
                 <Button :label="slotProps.data" outlined size="small"
-                    class="mx-2 w-11 overflow-hidden white-space-nowrap" />
-                <!-- <Button :label="slotProps.data" outlined size="small"
-                    class="mx-2 w-11 sm:w-11rem md:w-10rem lg:w-12rem overflow-hidden white-space-nowrap" /> -->
+                    class="mx-2 w-11 overflow-hidden white-space-nowrap zoominup" />
             </div>
         </template>
     </Carousel>
