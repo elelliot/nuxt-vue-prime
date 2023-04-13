@@ -7,8 +7,10 @@ export default defineNuxtConfig({
         "primevue/resources/themes/viva-light/theme.css",
         "primevue/resources/primevue.css",
         "primeicons/primeicons.css",
-        "/node_modules/primeflex/primeflex.css"
     ],
+    modules: [
+        '@unocss/nuxt',
+      ],
 	build: {
 		transpile: ["primevue"]
 	}
