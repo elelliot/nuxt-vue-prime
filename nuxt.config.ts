@@ -1,5 +1,14 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+    components: {
+        "dirs": [
+            {
+              "path": "~/components/FilterBarComponents",
+              
+            },
+            "~/components"
+          ]
+    },
     css: [
         "@/assets/css/main.css",
         // "primevue/resources/themes/lara-light-blue/theme.css",
