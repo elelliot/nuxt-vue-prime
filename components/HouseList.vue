@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import { faker } from '@faker-js/faker';
 
 
-const houses = ref([
+const pics = [
     "https://img.vivanuncios.com.mx/api/v1/mx-ads/images/c1/c1b2fbbc-c30c-4421-bf40-c305e7840fb4?rule=s-I72.auto",
     "https://img.vivanuncios.com.mx/api/v1/mx-pt10-ads/images/f0/f0bedb3a-0e69-4aa3-8f30-f46134f7e3e6?rule=s-I72.auto",
     "https://img.vivanuncios.com.mx/api/v1/mx-pt10-ads/images/1e/1e20b71c-d1b0-4198-8964-cfbc78c770ab?rule=s-I72.auto",
@@ -28,15 +29,65 @@ const houses = ref([
     "https://img.vivanuncios.com.mx/api/v1/mx-pt10-ads/images/38/386166f9-f436-4ac8-ada0-ce6d72427435?rule=s-I72.auto",
     "https://img.vivanuncios.com.mx/api/v1/mx-pt10-ads/images/38/386166f9-f436-4ac8-ada0-ce6d72427435?rule=s-I72.auto",
     "https://img.vivanuncios.com.mx/api/v1/mx-pt10-ads/images/38/386166f9-f436-4ac8-ada0-ce6d72427435?rule=s-I72.auto",
+]
 
-])
+
+const houseAds = ref([{
+    housePhoto: "", 
+    housePrice: "",
+    houseModels: 0,
+    houseCapacity: 0,
+    houseMinSize: 0,
+    houseMaxSize: 0,
+    houseAddress:"",
+    streetName:"",
+    houseBuildingNumber: "",
+    houseDescription:""
+}])
+
+function generateRandomData(){
+    const houses = []
+    for (let i = 0; i < 26; i++) {
+        houses.push({
+            housePhoto: faker.helpers.arrayElement(pics),
+            housePrice: faker.finance.amount(1000000, 12000000, 0, "$", true),
+            houseModels: faker.datatype.number({ min: 1, max: 9 }),
+            houseCapacity: faker.datatype.number({ min: 1, max: 9 }),
+            houseMinSize: faker.datatype.number({ min: 20, max: 200 }),
+            houseMaxSize: faker.datatype.number({ min: 201, max: 400 }),
+            houseAddress: faker.address.street(),
+            streetName: faker.address.street(),
+            houseBuildingNumber: faker.address.buildingNumber(),
+            houseDescription: faker.lorem.sentence(9)
+        })
+    }
+    houseAds.value = houses
+}
+
+watchEffect(() => {
+    generateRandomData()
+})
+
 </script>
 
 <template>
-    <div class="grid justify-content-center gap-3">
-        <House v-for="house in houses" :housePic="house" class="" />
+    <div class="max-w-[1920px] mx-auto">
+        <div class="grid gap-5 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+            <House v-for="(house, index) in houseAds"
+            :key="index"
+            :housePhoto="house.housePhoto" 
+            :housePrice="house.housePrice"
+            :houseModels="house.houseModels" 
+            :houseCapacity="house.houseCapacity" 
+            :houseMinSize="house.houseMinSize"
+            :houseMaxSize="house.houseMaxSize"
+            :houseAddress="house.houseAddress"
+            :streetName="house.streetName"
+            :houseBuildingNumber="house.houseBuildingNumber"
+            :houseDescription="house.houseDescription"
+            />
+        </div>
     </div>
 </template>
 
-<style>
-</style>
+<style></style>

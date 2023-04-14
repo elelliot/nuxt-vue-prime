@@ -30,22 +30,20 @@ const responsiveOptions = ref([
 </script>
 
 <template>
-    <Carousel 
-    :value="statesMexico" 
-    :num-visible="7" 
-    :numScroll="7" 
-    :responsive-options="responsiveOptions"
-    :showIndicators="false"
-    containerClass="mb-4"
-    >
+    <Carousel :value="statesMexico" :num-visible="7" :numScroll="7" :responsive-options="responsiveOptions"
+        :showIndicators="false" containerClass="items-center" class="my-2">
         <template #item="slotProps">
-            <div class="flex justify-content-center">
 
-                <Button :label="slotProps.data" outlined size="small"
-                    class="" />
-                <!-- <Button :label="slotProps.data" outlined size="small"
-                    class="mx-2 w-11 overflow-hidden white-space-nowrap zoominup" /> -->
-            </div>
+            <!-- <Button :label="slotProps.data" outlined size="small" class="" /> -->
+            <Button :label="slotProps.data" outlined size="small"
+                        class="w-11/12	overflow-hidden whitespace-nowrap zoominup" />
         </template>
     </Carousel>
 </template>
+
+<style scoped>
+:deep(.p-carousel-item){
+    display: flex;
+    justify-content: center;
+}
+</style>
