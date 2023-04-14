@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import AutoComplete from 'primevue/autocomplete';
 import Menubar from 'primevue/menubar';
-import OverlayPanel from 'primevue/overlaypanel';
+
+
+import Toolbar from 'primevue/toolbar';
 import Button from 'primevue/button';
 
+//<!-- MenuBar Implementation -->
 // const items = ref([
 //     {
 //         label: 'Categoria',
@@ -117,30 +120,45 @@ import Button from 'primevue/button';
 //     }
 // ]);
 
-const items = ref([
-    {
-        label: 'Categoria',
-    },
-])
-const op = ref();
-const toggle = (event: any) => {
-    op.value.toggle(event);
-}
+// const items = ref([
+//     {
+//         label: 'Categoria',
+//     },
+// ])
+
+
 
 </script>
 <template>
-    <!-- MenuBar Attempt -->
     <div class="my-2">
-        <Menubar class="flex" :model="items">
+        <!-- MenuBar Implementation -->
+        <!-- <Menubar class="flex" :model="items">
             <template #start>
-                <AutoComplete class="" />
+                <AutoComplete inputClass="border-2 border-blue-6 mr-4"
+                    placeholder="Escribe una ubicacion (ej. Ciudad, Estado)" />
             </template>
             <template #item>
-                <div @mouseover="toggle">Categoria</div>
-                <OverlayPanel ref="op">
-                    <div>GG</div>
-                </OverlayPanel>
+                    <div class="">
+                        <CategoryFilter />
+                    </div>
             </template>
-        </Menubar>
+        </Menubar> -->
+
+        <!-- Toolbar Implementation , just this, don't need that pointless and big Array -->
+        <div>
+            <Toolbar>
+                <template #start>
+                    <div class="flex gap-2">
+                        <AutoComplete inputClass="border-2 border-blue-6 mr-4"
+                        placeholder="Escribe una ubicacion (ej. Ciudad, Estado)" />
+                        <CategoryFilter />
+                    </div>
+                </template>
+            </Toolbar>
+        </div>
     </div>
 </template>
+
+<style scoped>
+
+</style>
