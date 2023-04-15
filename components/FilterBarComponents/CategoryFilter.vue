@@ -19,6 +19,7 @@ const value2 = ref(options2.value[0]);
 
 const op = ref();
 const downArrow = ref(true)
+const checked = ref(true)
 const toggle = (event: any) => {
     op.value.toggle(event);
     downArrow.value = !downArrow.value
@@ -29,41 +30,29 @@ watchEffect(() => {
 })
 </script>
 <template>
-    <!-- <div class="flex justify-center"> -->
-        
-        <Button @click="toggle" iconPos="right" :icon=" downArrow ? 'pi pi-angle-down': 'pi pi-angle-up'" label="Categoria" outlined />
-                <OverlayPanel ref="op" :showCloseIcon="true">
-                <div class="flex flex-col gap-4">
-        <div>
-            <span class="text-base font-600">Categoria</span>
-            <div class="p-fluid mt-2">
-                <SelectButton v-model="value" :options="options" optionLabel="name" class="w-auto" />
+    <Button @click="toggle" iconPos="right" :icon="downArrow ? 'pi pi-angle-down' : 'pi pi-angle-up'" label="Categoria"
+        outlined />
+    <OverlayPanel ref="op">
+        <div class="flex flex-col gap-4">
+            <div>
+                <span class="text-base font-600">Categoria</span>
+                <div class="p-fluid mt-2">
+                    <SelectButton v-model="value" :options="options" optionLabel="name" class="w-auto" />
+                </div>
+            </div>
+            <div>
+                <span class="text-base font-600">¿Que tipo de propiedad estas buscando?</span>
+                <div class="mt-2">
+                    <SelectButton v-model="value2" :options="options2" optionLabel="name" class="whitespace-nowrap" />
+                </div>
+            </div>
+
+
+            <div>
+                <Button class="w-full flex justify-center">Actualizar</Button>
             </div>
         </div>
-        <div>
-            <span class="text-base font-600">¿Que tipo de propiedad estas buscando?</span>
-            <div class="mt-2">
-                <SelectButton v-model="value2" :options="options2" optionLabel="name" class="whitespace-nowrap" />
-            </div>
-        </div>
-
-
-        
-
-
-
-        <div>
-            <Button class="w-full flex justify-center">Actualizar</Button>
-        </div>
-
-
-
-
-
-
-    </div>
-                </OverlayPanel>
-    
-    <!-- </div> -->
+    </OverlayPanel>
 </template>
 
+<style scoped></style>
