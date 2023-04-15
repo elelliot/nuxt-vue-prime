@@ -27,8 +27,8 @@ const props = defineProps<{
         <template #subtitle> <span class="text-lg">Desde</span> <span class="text-gray-800 font-bold">{{props.housePrice}}</span>
         </template>
         <template #content>
-            <div class="flex gap-2 whitespace-nowrap text-xs sm:text-base md:text-xs">
-                <div><b>{{props.houseModels}} modelos</b></div>
+            <div class="flex gap-2 whitespace-nowrap text-xs sm:text-base md:text-xs lg:text-sm">
+                <div><b>{{props.houseModels}} modelo(s)</b></div>
                 <div class="flex align-items-center gap-1"><i class="pi pi-home"></i><b>{{props.houseCapacity}}</b></div>
                 <div class="flex align-items-center gap-1"><i class="pi pi-table"></i><b>{{props.houseMinSize}}-{{props.houseMaxSize}} m²</b></div>
             </div>
