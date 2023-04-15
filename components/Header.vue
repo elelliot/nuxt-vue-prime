@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Menubar from 'primevue/menubar';
+import TabMenu from 'primevue/tabmenu';
 const items = ref([{
     label: 'Home',
     icon: 'pi pi-home',
@@ -43,6 +44,8 @@ const linkStyle = "py-2 px-2 mx-1 no-underline text-2xl transition-colors transi
         </nav> -->
         
         <Menubar class="flex justify-center" :model="items" />
+        <!-- <TabMenu class="flex justify-center" :model="items" /> -->
+
         <!-- <NuxtPage name="HomePage" /> -->
     </div>
 </template>
