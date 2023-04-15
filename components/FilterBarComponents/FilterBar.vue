@@ -5,7 +5,7 @@ import Menubar from 'primevue/menubar';
 
 import Toolbar from 'primevue/toolbar';
 import Button from 'primevue/button';
-
+import InputText from 'primevue/inputtext';
 //<!-- MenuBar Implementation -->
 // const items = ref([
 //     {
@@ -130,7 +130,7 @@ import Button from 'primevue/button';
 
 </script>
 <template>
-    <div class="my-2">
+    <div class="">
         <!-- MenuBar Implementation -->
         <!-- <Menubar class="flex" :model="items">
             <template #start>
@@ -146,12 +146,17 @@ import Button from 'primevue/button';
 
         <!-- Toolbar Implementation , just this, don't need that pointless and big Array -->
         <div>
-            <Toolbar>
+            <Toolbar class="px-0 border-0 border-b-2 rounded-none	">
                 <template #start>
                     <div class="flex gap-2">
-                        <AutoComplete inputClass="border-2 border-blue-6 mr-4"
-                        placeholder="Escribe una ubicacion (ej. Ciudad, Estado)" />
+                        <span class="p-input-icon-left">
+                            <i class="pi pi-map-marker" />
+                            <InputText class="mr-4"
+                            placeholder="Escribe una ubicacion (ej. Ciudad, Estado)" />
+
+                        </span>
                         <CategoryFilter />
+                        <GroupFilter />
                     </div>
                 </template>
             </Toolbar>
@@ -160,5 +165,7 @@ import Button from 'primevue/button';
 </template>
 
 <style scoped>
-
+/* .p-toolbar	{
+    padding: 0 0;
+} */
 </style>
