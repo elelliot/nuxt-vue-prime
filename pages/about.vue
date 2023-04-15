@@ -10,11 +10,45 @@
             </template>
         </Menubar>
     </div>
+
+    <div class="card">
+        <TabMenu :model="items2" />
+        <router-view />
+    </div>
 </template>
 
 <script setup>
 import Menubar from 'primevue/menubar';
 import InputText from 'primevue/inputtext';
+import TabMenu from 'primevue/tabmenu';
+
+const items2 = ref([
+    {
+        label: 'Home',
+        icon: 'pi pi-fw pi-home',
+        to: '/'
+    },
+    {
+        label: 'Calendar',
+        icon: 'pi pi-fw pi-calendar',
+        to: '/calendar'
+    },
+    {
+        label: 'Edit',
+        icon: 'pi pi-fw pi-pencil',
+        to: '/edit'
+    },
+    {
+        label: 'Documentation',
+        icon: 'pi pi-fw pi-file',
+        to: '/documentation'
+    },
+    {
+        label: 'Settings',
+        icon: 'pi pi-fw pi-cog',
+        to: '/settings'
+    }
+]);
 
 const items = ref([
     {
