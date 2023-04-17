@@ -34,7 +34,7 @@ function generateRandomData(){
     houseAds.value = houses
 }
 
-watchEffect(() => {
+onMounted(() => {
     generateRandomData()
 })
 
