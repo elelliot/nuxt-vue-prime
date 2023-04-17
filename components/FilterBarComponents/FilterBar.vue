@@ -157,6 +157,8 @@ import InputText from 'primevue/inputtext';
                         </span>
                         <CategoryFilter />
                         <GroupFilter />
+                        <RoomFilter />
+                        <PriceFilter />
                     </div>
                 </template>
             </Toolbar>
