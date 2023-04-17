@@ -19,18 +19,16 @@ const value2 = ref(options2.value[0]);
 
 const op = ref();
 const downArrow = ref(true)
-const checked = ref(true)
+
+//TODO : clicking out the panel closes it but don't change the icon back downwards, but adding the @focusOut event leads to unexpected behavior
 const toggle = (event: any) => {
     op.value.toggle(event);
     downArrow.value = !downArrow.value
 }
-watchEffect(() => {
-    console.log(value.value)
-    // console.log(value2.value)
-})
+
 </script>
 <template>
-    <Button @click="toggle" iconPos="right" :icon="downArrow ? 'pi pi-angle-down' : 'pi pi-angle-up'" label="Categoria"
+    <Button @click="toggle" iconPos="right"  :icon="downArrow ? 'pi pi-angle-down' : 'pi pi-angle-up'" label="Categoria"
         outlined />
     <OverlayPanel ref="op">
         <div class="flex flex-col gap-4">
