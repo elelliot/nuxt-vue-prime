@@ -13,32 +13,33 @@ const props = defineProps<{
     streetName: string,
     houseBuildingNumber: string,
     houseDescription: string,
-
-    
 }>()
 
 </script>
 <template>
-    <Card style="min-width: 10em; max-width: 23em"
-        class=" hover:shadow-2xl cursor-pointer transition-all transition-duration-300 ">
+    <Card style="min-width: 10em; max-width: 23em" class=" hover:shadow-2xl transition-all transition-duration-300 ">
         <template #header>
-            <Image alt="user header" class="" height="180" :src="props.housePhoto" />
+            <NuxtLink to="/house-1">
+                <Image alt="user header" height="180" :src="props.housePhoto" />
+            </NuxtLink>
         </template>
-        <template #subtitle> <span class="text-lg">Desde</span> <span class="text-gray-800 font-bold">{{props.housePrice}}</span>
+        <template #subtitle> <span class="text-lg">Desde</span> <span
+                class="text-gray-800 font-bold">{{ props.housePrice }}</span>
         </template>
         <template #content>
             <div class="flex gap-2 whitespace-nowrap text-xs sm:text-base md:text-xs lg:text-sm">
-                <div><b>{{props.houseModels}} modelo(s)</b></div>
-                <div class="flex align-items-center gap-1"><i class="pi pi-home"></i><b>{{props.houseCapacity}}</b></div>
-                <div class="flex align-items-center gap-1"><i class="pi pi-table"></i><b>{{props.houseMinSize}}-{{props.houseMaxSize}} m²</b></div>
+                <div><b>{{ props.houseModels }} modelo(s)</b></div>
+                <div class="flex align-items-center gap-1"><i class="pi pi-home"></i><b>{{ props.houseCapacity }}</b></div>
+                <div class="flex align-items-center gap-1"><i
+                        class="pi pi-table"></i><b>{{ props.houseMinSize }}-{{ props.houseMaxSize }} m²</b></div>
             </div>
 
-            <div class="overflow-hidden whitespace-nowrap text-ellipsis text-xs sm:text-base"><b>{{props.houseAddress}}</b>,
-                {{props.houseBuildingNumber}} {{props.streetName}}, Edo. De México</div>
+            <div class="overflow-hidden whitespace-nowrap text-ellipsis text-xs sm:text-base"><b>{{ props.houseAddress }}</b>,
+                {{ props.houseBuildingNumber }} {{ props.streetName }}, Edo. De México</div>
 
             <div class="flex gap-2 text-xs sm:text-base">
                 <a class="no-underline hover:underline overflow-hidden whitespace-nowrap"
-                    href="https://www.vivanuncios.com.mx/d-desarrollo-aurea-residences/5df3f58e4f0cc381f406543e">{{props.houseDescription}}</a>
+                    href="">{{ props.houseDescription }}</a>
                 <a href="" class="no-underline hover:underline">...</a>
             </div>
 
