@@ -35,13 +35,13 @@ const toggle = (event: any) => {
             <div>
                 <span class="text-base font-600">Categoria</span>
                 <div class="p-fluid mt-2">
-                    <SelectButton v-model="value" :options="options" optionLabel="name" class="w-auto" />
+                    <SelectButton v-model="value" :options="options" :unselectable="true" optionLabel="name" class="w-auto" />
                 </div>
             </div>
             <div>
                 <span class="text-base font-600">¿Que tipo de propiedad estas buscando?</span>
                 <div class="mt-2">
-                    <SelectButton v-model="value2" :options="options2" optionLabel="name" class="whitespace-nowrap" />
+                    <SelectButton v-model="value2" :options="options2" :unselectable="true" optionLabel="name" class="whitespace-nowrap" />
                 </div>
             </div>
 
