@@ -31,12 +31,12 @@ const responsiveOptions = ref([
 
 <template>
     <Carousel :value="statesMexico" :num-visible="7" :numScroll="7" :responsive-options="responsiveOptions"
-        :showIndicators="false" containerClass="items-center" class="my-2">
+        :showIndicators="false" containerClass="items-center" class="my-2" >
         <template #item="slotProps">
 
             <!-- <Button :label="slotProps.data" outlined size="small" class="" /> -->
             <Button :label="slotProps.data" outlined size="small"
-                        class="w-11/12	overflow-hidden whitespace-nowrap zoominup" />
+                        class="w-11/12	overflow-hidden whitespace-nowrap" />
         </template>
     </Carousel>
 </template>
