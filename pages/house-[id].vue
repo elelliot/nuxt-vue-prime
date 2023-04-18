@@ -52,76 +52,36 @@ const perksInHouse = ref([
     text:'Seguridad'
   },
   {
-    icon:'pi pi-shield',
-    text:'Seguridad'
+    icon:'pi pi-sun',
+    text:'Jardines'
   },
   {
-    icon:'pi pi-shield',
-    text:'Seguridad'
+    icon:'pi pi-car',
+    text:'Estacionamiento para visitas'
   },
   {
-    icon:'pi pi-shield',
-    text:'Seguridad'
+    icon:'pi pi-wifi',
+    text:'Wi-Fi'
   },
   {
-    icon:'pi pi-shield',
-    text:'Seguridad'
+    icon:'pi pi-bell',
+    text:'Alarma contra incendios'
   },
   {
-    icon:'pi pi-shield',
-    text:'Seguridad'
+    icon:'pi pi-shopping-bag',
+    text:'Centros comerciales cercanos'
   },
   {
-    icon:'pi pi-shield',
-    text:'Seguridad'
+    icon:'pi pi-box',
+    text:'Bodegas'
   },
   {
-    icon:'pi pi-shield',
-    text:'Seguridad'
+    icon:'pi pi-video',
+    text:'Cinema'
   },
   {
-    icon:'pi pi-shield',
-    text:'Seguridad'
-  },
-  {
-    icon:'pi pi-shield',
-    text:'Seguridad'
-  },
-  {
-    icon:'pi pi-shield',
-    text:'Seguridad'
-  },
-  {
-    icon:'pi pi-shield',
-    text:'Seguridad'
-  },
-  {
-    icon:'pi pi-shield',
-    text:'Seguridad'
-  },
-  {
-    icon:'pi pi-shield',
-    text:'Seguridad'
-  },
-  {
-    icon:'pi pi-shield',
-    text:'Seguridad'
-  },
-  {
-    icon:'pi pi-shield',
-    text:'Seguridad'
-  },
-  {
-    icon:'pi pi-shield',
-    text:'Seguridad'
-  },
-  {
-    icon:'pi pi-shield',
-    text:'Seguridad'
-  },
-  {
-    icon:'pi pi-shield',
-    text:'Seguridad'
+    icon:'pi pi-home',
+    text:'Escuelas cercanas'
   },
 ])
 
@@ -142,10 +102,10 @@ const perksInHouse = ref([
       </Galleria>
     </div>
 
-    <div class="w-full">
+    <div class="w-[860px]">
       <TabView>
         <TabPanel header="Detalles Generales">
-          <div class="w-2/3">
+          <div class="w-full">
             <p class="text-xl">
               (ANUNCIO DIRIGIDO A BROKERS) Departamentos en Preventa More Santa Fe
               en Cuajimalpa de Morelos, CDMX <br />
@@ -156,18 +116,14 @@ const perksInHouse = ref([
             </p>
 
             <span class="text-xl">Detalles Generales</span>
-            <div class="grid grid-cols-3 gap-4 mt-8">
+            <div class="grid grid-cols-3 w-full gap-4 mt-8">
               <div>
                 <i class="pi pi-check-circle"></i>
                 <span class="ml-2">Estatus: <span class="font-bold">Preventa</span></span>
               </div>
               <div>
-                <i class="pi pi-check-circle"></i>
+                <i class="pi pi-table"></i>
                 <span class="ml-2">Metros Cuadrados: <span class="font-bold">54-94m²</span></span>
-              </div>
-              <div>
-                <i class="pi pi-check-circle"></i>
-                <span class="ml-2">Recamaras: <span class="font-bold">2-3</span></span>
               </div>
               <div>
                 <i class="pi pi-check-circle"></i>
@@ -182,15 +138,19 @@ const perksInHouse = ref([
                 <span class="ml-2">Medio Baños: <span class="font-bold">1</span></span>
               </div>
               <div>
-                <i class="pi pi-check-circle"></i>
+                <i class="pi pi-car"></i>
                 <span class="ml-2">Garage: <span class="font-bold">1-2</span></span>
               </div>
               <div>
-                <i class="pi pi-check-circle"></i>
+                <i class="pi pi-home"></i>
+                <span class="ml-2">Fecha de Construccion: <span class="font-bold">-</span></span>
+              </div>
+              <div>
+                <i class="pi pi-table"></i>
                 <span class="ml-2">Superficie Total: <span class="font-bold">-</span></span>
               </div>
               <div>
-                <i class="pi pi-check-circle"></i>
+                <i class="pi pi-calendar"></i>
                 <span class="ml-2">Entrega: <span class="font-bold">Diciembre 2025</span></span>
               </div>
             </div>
@@ -201,7 +161,7 @@ const perksInHouse = ref([
 
 
         <TabPanel header="Amenidades">
-          <div class="grid grid-cols-6 w-4/7">
+          <div class="grid grid-cols-6 w-full">
             <Perks v-for="perk in perksInHouse" :perk-icon="perk.icon">
               <template #text>
                 {{ perk.text }}
