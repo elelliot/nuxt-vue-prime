@@ -4,6 +4,8 @@ import Galleria from "primevue/galleria";
 import Image from "primevue/image";
 import TabView from "primevue/tabview";
 import TabPanel from "primevue/tabpanel";
+import Divider from 'primevue/divider';
+
 import { faker } from "@faker-js/faker";
 
 const images = ref();
@@ -169,7 +171,7 @@ const perksInHouse = ref([
             </Perks>
           </div>
         </TabPanel>
-        <TabPanel header="Modelos">
+        <!-- <TabPanel header="Modelos">
           <p></p>
         </TabPanel>
         <TabPanel header="Ubicacion">
@@ -177,9 +179,18 @@ const perksInHouse = ref([
         </TabPanel>
         <TabPanel header="Descripcion">
           <p></p>
-        </TabPanel>
-      </TabView>
+        </TabPanel> -->
+      </TabView>  
     </div>
+
+    <Divider layout="vertical" />
+    
+    <div class="">
+      <ContactForm />
+    </div>
+
+
+
   </div>
 </template>
 
