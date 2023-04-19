@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
 import Galleria from "primevue/galleria";
 import Image from "primevue/image";
 import TabView from "primevue/tabview";
@@ -112,13 +111,13 @@ const perksInHouse = ref([
               (ANUNCIO DIRIGIDO A BROKERS) Departamentos en Preventa More Santa Fe
               en Cuajimalpa de Morelos, CDMX <br />
 
-            <div class="pt-4">
+            <div class="pt-4 pb-6">
               Desde <span class="font-bold text-5xl">$3,660,076</span>
             </div>
             </p>
 
             <span class="text-xl">Detalles Generales</span>
-            <div class="grid grid-cols-3 w-full gap-4 mt-8">
+            <div class="grid grid-cols-3 w-full gap-4 mt-6">
               <div>
                 <i class="pi pi-check-circle"></i>
                 <span class="ml-2">Estatus: <span class="font-bold">Preventa</span></span>
@@ -172,30 +171,20 @@ const perksInHouse = ref([
           </div>
         </TabPanel>
         <!-- <TabPanel header="Modelos">
-          <p></p>
-        </TabPanel>
-        <TabPanel header="Ubicacion">
-          <p></p>
-        </TabPanel>
-        <TabPanel header="Descripcion">
-          <p></p>
-        </TabPanel> -->
-      </TabView>  
+            <p></p>
+          </TabPanel>
+          <TabPanel header="Ubicacion">
+            <p></p>
+          </TabPanel>
+          <TabPanel header="Descripcion">
+            <p></p>
+          </TabPanel> -->
+      </TabView>
     </div>
 
     <Divider layout="vertical" />
-    
-    <div class="">
-      <ContactForm />
-    </div>
 
-
+    <HowToContact />
 
   </div>
 </template>
-
-<style scoped>
-.p-tabview-panels {
-  padding: 0px;
-}
-</style>
