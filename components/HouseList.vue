@@ -44,7 +44,7 @@ onMounted(() => {
 
 <template>
     <div class="max-w-[1920px] mx-auto">
-        <div class="grid gap-5 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+        <div class="grid gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
             <House v-for="(house, index) in houseAds"
             :key="index"
             :housePhoto="house.housePhoto" 
