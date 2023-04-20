@@ -12,7 +12,8 @@ const houseAds = ref([{
     houseAddress:"",
     streetName:"",
     houseBuildingNumber: "",
-    houseDescription:""
+    houseDescription:"",
+    houseID:""
 }])
 
 function generateRandomData(){
@@ -28,7 +29,8 @@ function generateRandomData(){
             houseAddress: faker.address.street(),
             streetName: faker.address.street(),
             houseBuildingNumber: faker.address.buildingNumber(),
-            houseDescription: faker.lorem.sentence(9)
+            houseDescription: faker.lorem.sentence(9),
+            houseID: faker.datatype.uuid()
         })
     }
     houseAds.value = houses
@@ -55,6 +57,7 @@ onMounted(() => {
             :streetName="house.streetName"
             :houseBuildingNumber="house.houseBuildingNumber"
             :houseDescription="house.houseDescription"
+            :houseID="house.houseID"
             />
         </div>
     </div>

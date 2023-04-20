@@ -13,13 +13,14 @@ const props = defineProps<{
     streetName: string,
     houseBuildingNumber: string,
     houseDescription: string,
+    houseID: string
 }>()
 
 </script>
 <template>
     <Card style="min-width: 10em; max-width: 23em" class=" hover:shadow-2xl transition-all transition-duration-300 ">
         <template #header>
-            <NuxtLink to="/house-1">
+            <NuxtLink :to="`/house-${props.houseID}`">
                 <Image alt="user header" height="180" :src="props.housePhoto" />
             </NuxtLink>
         </template>

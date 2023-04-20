@@ -7,6 +7,9 @@ import Divider from 'primevue/divider';
 
 import { faker } from "@faker-js/faker";
 
+const route = useRoute()
+console.log(route.params)
+
 const images = ref();
 
 function generateRandomData() {

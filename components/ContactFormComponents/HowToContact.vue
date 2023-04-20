@@ -10,7 +10,7 @@ const selectedContactOption = ref(contactOptions.value[0])
 </script>
 
 <template>
-    <div>
+    <div class="mx-4">
         <SelectButton v-model="selectedContactOption" :options="contactOptions" :unselectable="true" optionLabel="name" class="p-fluid flex" />
         <MessageForm v-if="selectedContactOption.name === 'Mensaje'"/>
         <ScheduleVisit v-else/>
