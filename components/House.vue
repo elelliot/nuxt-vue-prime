@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import Card from 'primevue/card';
 import Image from 'primevue/image';
+import Button from 'primevue/button';
+import OverlayPanel from 'primevue/overlaypanel';
 
 const props = defineProps<{
     housePhoto: string,
@@ -16,36 +18,46 @@ const props = defineProps<{
     houseID: string
 }>()
 
+const op = ref();
+const toggle = (event: any) => {
+    op.value.toggle(event);
+}
 </script>
 <template>
-    <Card style="min-width: 10em; max-width: 23em" class=" hover:shadow-2xl transition-all transition-duration-300 ">
+    <Card style="min-width: 10em;" class=" hover:shadow-2xl transition-all transition-duration-300 ">
         <template #header>
             <NuxtLink :to="`/house-${props.houseID}`">
                 <Image alt="user header" height="180" :src="props.housePhoto" />
             </NuxtLink>
         </template>
-        <template #subtitle> <span class="text-lg">Desde</span> <span
-                class="text-gray-800 font-bold">{{ props.housePrice }}</span>
+        <template #subtitle> <span class="text-gray-700 text-2xl	sm:text-xl">Desde</span> <span
+                class="text-gray-800 font-semibold text-3xl	sm:text-2xl">{{ props.housePrice }}</span>
         </template>
         <template #content>
-            <div class="flex gap-2 whitespace-nowrap text-xs sm:text-base md:text-xs lg:text-sm">
-                <div><b>{{ props.houseModels }} modelo(s)</b></div>
-                <div class="flex align-items-center gap-1"><i class="pi pi-home"></i><b>{{ props.houseCapacity }}</b></div>
-                <div class="flex align-items-center gap-1"><i
-                        class="pi pi-table"></i><b>{{ props.houseMinSize }}-{{ props.houseMaxSize }} m²</b></div>
+            <div class="flex font-semibold text-gray-700 gap-2 whitespace-nowrap text-xl sm:text-lg md:text-xs lg:text-sm">
+                <div><span>{{ props.houseModels }} modelo(s)</span></div>
+                <div class="flex items-center gap-1 "><i class="pi pi-home"></i><span>{{ props.houseCapacity }}</span></div>
+                <div class="flex items-center gap-1"><i class="pi pi-table"></i><span>{{ props.houseMinSize }}-{{
+                    props.houseMaxSize }} m²</span></div>
             </div>
 
-            <div class="overflow-hidden whitespace-nowrap text-ellipsis text-xs sm:text-base"><b>{{ props.houseAddress }}</b>,
+            <div class="text-gray-700 overflow-hidden whitespace-nowrap text-ellipsis text-base"><span
+                    class="font-semibold">{{ props.houseAddress }}</span>,
                 {{ props.houseBuildingNumber }} {{ props.streetName }}, Edo. De México</div>
 
-            <div class="flex gap-2 text-xs sm:text-base">
-                <a class="no-underline hover:underline overflow-hidden whitespace-nowrap"
-                    href="">{{ props.houseDescription }}</a>
-                <a href="" class="no-underline hover:underline">...</a>
+            <div class="flex gap-2 justify-between text-base items-center">
+                <NuxtLink :to="`/house-${props.houseID}`"
+                    class="no-underline overflow-hidden whitespace-nowrap text-gray-500">
+                    {{ props.houseDescription }}
+                </NuxtLink>
+                <Button link label="..." size="small" @click="toggle" />
+                <OverlayPanel ref="op" :show-close-icon="true">
+                    <Image src="https://primefaces.org/cdn/primevue/images/product/bamboo-watch.jpg" alt="Bamboo Watch" />
+                </OverlayPanel>
             </div>
 
-            <div class="flex justify-end text-xs sm:text-base">
-                <a href="" class="no-underline hover:underline">Contactar</a>
+            <div class="flex justify-end text-base">
+                <Button :to="`/house-${props.houseID}`" link label="Contactar" />
             </div>
         </template>
     </Card>
