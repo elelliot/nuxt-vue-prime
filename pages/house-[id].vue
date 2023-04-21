@@ -29,21 +29,6 @@ onMounted(() => {
   generateRandomData();
 });
 
-const responsiveOptions = ref([
-  {
-    breakpoint: "479px",
-    numVisible: 2,
-  },
-  {
-    breakpoint: "639px",
-    numVisible: 3,
-  },
-  {
-    breakpoint: "767px",
-    numVisible: 4,
-  },
-]);
-
 const perksInHouse = ref([
   {
     icon: 'pi pi-shield',
@@ -91,25 +76,25 @@ const mdAndSmaller = breakpoints.smallerOrEqual('md')
 <template>
   <div class="flex flex-col pt-4">
     <div>
-      <Galleria :value="images" :responsiveOptions="responsiveOptions" :numVisible="4"
-        :thumbnailsPosition="mdAndSmaller ? 'bottom' : 'right'" :circular="true" containerStyle="max-width: 640px">
+      <Galleria :value="images" :numVisible="4" :showItemNavigators="mdAndSmaller ? true : false" thumbnailsPosition="right" :circular="true"
+        containerStyle="max-width: 640px" :autoPlay="true" :showThumbnails="mdAndSmaller ? false : true">
         <template #item="slotProps">
-        <Image :src="slotProps.item.housePhoto" :alt="slotProps.item.altText" :preview="true"
-          :imageClass="mdAndSmaller ? 'w-full block' : 'block'" />
-        </template>
-        <template #thumbnail="slotProps">
-          <Image :src="slotProps.item.housePhoto" :alt="slotProps.item.altText" imageClass="w-24 h-16 block	" />
-        </template>
-      </Galleria>
-    </div>
+          <Image :src="slotProps.item.housePhoto" :alt="slotProps.item.altText" :preview=" mdAndSmaller ? false : true"
+            :imageClass="mdAndSmaller ? 'w-full block' : 'block'" />
+      </template>
+      <template #thumbnail="slotProps">
+        <Image :src="slotProps.item.housePhoto" :alt="slotProps.item.altText" imageClass="w-24 h-16 block	" />
+      </template>
+    </Galleria>
+  </div>
 
-    <div class="">
+  <div class="max-w-[744px]">
       <TabView>
         <TabPanel header="Detalles Generales">
           <div class="w-full">
             <p class="text-xl">
-              (ANUNCIO DIRIGIDO A BROKERS) Departamentos en Preventa More Santa Fe
-              en Cuajimalpa de Morelos, CDMX <br />
+            (ANUNCIO DIRIGIDO A BROKERS) Departamentos en Preventa More Santa Fe
+            en Cuajimalpa de Morelos, CDMX <br />
 
             <div class="pt-4 pb-6">
               Desde <span class="font-bold text-5xl">$3,660,076</span>
@@ -162,7 +147,7 @@ const mdAndSmaller = breakpoints.smallerOrEqual('md')
 
 
         <TabPanel header="Amenidades">
-          <div class="grid grid-cols-6 w-full">
+          <div class="grid grid-cols-3 gap-1">
             <Perks v-for="perk in perksInHouse" :perk-icon="perk.icon">
               <template #text>
                 {{ perk.text }}
@@ -171,20 +156,20 @@ const mdAndSmaller = breakpoints.smallerOrEqual('md')
           </div>
         </TabPanel>
         <!-- <TabPanel header="Modelos">
-              <p></p>
-            </TabPanel>
-            <TabPanel header="Ubicacion">
-              <p></p>
-            </TabPanel>
-            <TabPanel header="Descripcion">
-              <p></p>
-            </TabPanel> -->
+                <p></p>
+              </TabPanel>
+              <TabPanel header="Ubicacion">
+                <p></p>
+              </TabPanel>
+              <TabPanel header="Descripcion">
+                <p></p>
+              </TabPanel> -->
       </TabView>
     </div>
 
     <!-- <Divider layout="vertical" />
 
-      <HowToContact /> -->
+        <HowToContact /> -->
 
   </div>
 </template>
