@@ -14,6 +14,7 @@ const props = defineProps<{
     houseAddress: string,
     streetName: string,
     houseBuildingNumber: string,
+    houseAd: string,
     houseDescription: string,
     houseID: string
 }>()
@@ -34,7 +35,7 @@ const toggle = (event: any) => {
                 class="text-gray-800 font-semibold text-3xl	sm:text-2xl">{{ props.housePrice }}</span>
         </template>
         <template #content>
-            <div class="flex font-semibold text-gray-700 gap-2 whitespace-nowrap text-xl sm:text-lg md:text-xs lg:text-sm">
+            <div class="flex overflow-hidden font-semibold text-gray-700 gap-2 whitespace-nowrap text-xl sm:text-lg md:text-sm">
                 <div><span>{{ props.houseModels }} modelo(s)</span></div>
                 <div class="flex items-center gap-1 "><i class="pi pi-home"></i><span>{{ props.houseCapacity }}</span></div>
                 <div class="flex items-center gap-1"><i class="pi pi-table"></i><span>{{ props.houseMinSize }}-{{
@@ -48,11 +49,13 @@ const toggle = (event: any) => {
             <div class="flex gap-2 justify-between text-base items-center">
                 <NuxtLink :to="`/house-${props.houseID}`"
                     class="no-underline overflow-hidden whitespace-nowrap text-gray-500">
-                    {{ props.houseDescription }}
+                    {{ props.houseAd }}
                 </NuxtLink>
-                <Button link label="..." size="small" @click="toggle" />
-                <OverlayPanel ref="op" :show-close-icon="true">
-                    <Image src="https://primefaces.org/cdn/primevue/images/product/bamboo-watch.jpg" alt="Bamboo Watch" />
+                <Button text label="..." size="small" @click="toggle" />
+                <OverlayPanel ref="op" class="w-72">
+                    <div class="overflow-hidden whitespace-nowrap text-ellipsis"><span class="font-semibold text-lg">{{ props.houseAd }}</span></div>
+                    <p class="text-base">{{ props.houseDescription }}</p>
+                    <NuxtLink :to="`/house-${props.houseID}`">Ver más</NuxtLink>
                 </OverlayPanel>
             </div>
 

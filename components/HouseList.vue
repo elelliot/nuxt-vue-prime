@@ -12,6 +12,7 @@ const houseAds = ref([{
     houseAddress:"",
     streetName:"",
     houseBuildingNumber: "",
+    houseAd:"",
     houseDescription:"",
     houseID:""
 }])
@@ -29,7 +30,8 @@ function generateRandomData(){
             houseAddress: faker.address.street(),
             streetName: faker.address.street(),
             houseBuildingNumber: faker.address.buildingNumber(),
-            houseDescription: faker.lorem.sentence(9),
+            houseAd: faker.lorem.sentence(20),
+            houseDescription: faker.lorem.sentence(50),
             houseID: faker.datatype.uuid()
         })
     }
@@ -44,9 +46,9 @@ onMounted(() => {
 
 <template>
     <div class="max-w-[1920px] mx-auto">
-        <div class="grid gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+        <div class="grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
             <House v-for="(house, index) in houseAds"
-            :key="index"
+            :key="house.houseID"
             :housePhoto="house.housePhoto" 
             :housePrice="house.housePrice"
             :houseModels="house.houseModels" 
@@ -56,6 +58,7 @@ onMounted(() => {
             :houseAddress="house.houseAddress"
             :streetName="house.streetName"
             :houseBuildingNumber="house.houseBuildingNumber"
+            :houseAd="house.houseAd"
             :houseDescription="house.houseDescription"
             :houseID="house.houseID"
             />

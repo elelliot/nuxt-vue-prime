@@ -6,9 +6,11 @@ import TabPanel from "primevue/tabpanel";
 import Divider from 'primevue/divider';
 
 import { faker } from "@faker-js/faker";
+import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
 
-const route = useRoute()
-console.log(route.params)
+
+
+const breakpoints = useBreakpoints(breakpointsTailwind)
 
 const images = ref();
 
@@ -29,84 +31,79 @@ onMounted(() => {
 
 const responsiveOptions = ref([
   {
-    breakpoint: "1920px",
-    numVisible: 5,
+    breakpoint: "479px",
+    numVisible: 2,
   },
   {
-    breakpoint: "1280px",
-    numVisible: 5,
-  },
-  {
-    breakpoint: "991px",
-    numVisible: 4,
-  },
-  {
-    breakpoint: "767px",
+    breakpoint: "639px",
     numVisible: 3,
   },
   {
-    breakpoint: "575px",
-    numVisible: 1,
+    breakpoint: "767px",
+    numVisible: 4,
   },
 ]);
 
 const perksInHouse = ref([
   {
-    icon:'pi pi-shield',
-    text:'Seguridad'
+    icon: 'pi pi-shield',
+    text: 'Seguridad'
   },
   {
-    icon:'pi pi-sun',
-    text:'Jardines'
+    icon: 'pi pi-sun',
+    text: 'Jardines'
   },
   {
-    icon:'pi pi-car',
-    text:'Estacionamiento para visitas'
+    icon: 'pi pi-car',
+    text: 'Estacionamiento para visitas'
   },
   {
-    icon:'pi pi-wifi',
-    text:'Wi-Fi'
+    icon: 'pi pi-wifi',
+    text: 'Wi-Fi'
   },
   {
-    icon:'pi pi-bell',
-    text:'Alarma contra incendios'
+    icon: 'pi pi-bell',
+    text: 'Alarma contra incendios'
   },
   {
-    icon:'pi pi-shopping-bag',
-    text:'Centros comerciales cercanos'
+    icon: 'pi pi-shopping-bag',
+    text: 'Centros comerciales cercanos'
   },
   {
-    icon:'pi pi-box',
-    text:'Bodegas'
+    icon: 'pi pi-box',
+    text: 'Bodegas'
   },
   {
-    icon:'pi pi-video',
-    text:'Cinema'
+    icon: 'pi pi-video',
+    text: 'Cinema'
   },
   {
-    icon:'pi pi-home',
-    text:'Escuelas cercanas'
+    icon: 'pi pi-home',
+    text: 'Escuelas cercanas'
   },
 ])
 
 
+const mdAndSmaller = breakpoints.smallerOrEqual('md')
 
 </script>
 
 <template>
-  <div class="flex pt-4">
-    <div class="flex justify-center mr-8">
-      <Galleria :value="images" :responsiveOptions="responsiveOptions" :numVisible="4" containerStyle="max-width: 640px">
+  <div class="flex flex-col pt-4">
+    <div>
+      <Galleria :value="images" :responsiveOptions="responsiveOptions" :numVisible="4"
+        :thumbnailsPosition="mdAndSmaller ? 'bottom' : 'right'" :circular="true" containerStyle="max-width: 640px">
         <template #item="slotProps">
-          <Image :src="slotProps.item.housePhoto" :alt="slotProps.item.altText" :preview="true" class="h-[480px]" />
+        <Image :src="slotProps.item.housePhoto" :alt="slotProps.item.altText" :preview="true"
+          :imageClass="mdAndSmaller ? 'w-full block' : 'block'" />
         </template>
         <template #thumbnail="slotProps">
-          <Image :src="slotProps.item.housePhoto" :alt="slotProps.item.altText" imageClass="w-20 h-20" />
+          <Image :src="slotProps.item.housePhoto" :alt="slotProps.item.altText" imageClass="w-24 h-16 block	" />
         </template>
       </Galleria>
     </div>
 
-    <div class="w-[860px]">
+    <div class="">
       <TabView>
         <TabPanel header="Detalles Generales">
           <div class="w-full">
@@ -174,20 +171,26 @@ const perksInHouse = ref([
           </div>
         </TabPanel>
         <!-- <TabPanel header="Modelos">
-            <p></p>
-          </TabPanel>
-          <TabPanel header="Ubicacion">
-            <p></p>
-          </TabPanel>
-          <TabPanel header="Descripcion">
-            <p></p>
-          </TabPanel> -->
+              <p></p>
+            </TabPanel>
+            <TabPanel header="Ubicacion">
+              <p></p>
+            </TabPanel>
+            <TabPanel header="Descripcion">
+              <p></p>
+            </TabPanel> -->
       </TabView>
     </div>
 
-    <Divider layout="vertical" />
+    <!-- <Divider layout="vertical" />
 
-    <HowToContact />
+      <HowToContact /> -->
 
   </div>
 </template>
+
+<style module>
+.p-image {
+  height: 100%;
+}
+</style>
