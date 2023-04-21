@@ -17,6 +17,7 @@ export default defineNuxtConfig({
   ],
   modules: [
     '@unocss/nuxt',
+    '@vueuse/nuxt',
   ],
   build: {
     transpile: ["primevue"]
