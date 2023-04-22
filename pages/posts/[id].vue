@@ -3,7 +3,6 @@ import Galleria from "primevue/galleria";
 import Image from "primevue/image";
 import TabView from "primevue/tabview";
 import TabPanel from "primevue/tabpanel";
-import Divider from 'primevue/divider';
 import Button from 'primevue/button';
 import Dialog from 'primevue/dialog';
 
@@ -70,29 +69,26 @@ const perksInHouse = ref([
   },
 ])
 
-
-const isDesktopScreen = breakpoints.greaterOrEqual('lg')
 const isMobileScreen = breakpoints.smallerOrEqual('md')
 const isSendMessageModalOpen = ref(false)
 
 </script>
 
 <template>
-  <div class="flex mt-4">
-    <div class="flex w-full flex-col gap-4">
+  <div class="flex mt-4 gap-4 max-w-[1980px] justify-around">
+    <div class="flex flex-col items-center lg:items-start gap-4">
 
-        <Galleria :value="images" :numVisible="4" :showItemNavigators="isMobileScreen ? true : false"
-          thumbnailsPosition="right" :circular="true" containerStyle="max-width: 640px; overflow:hidden" :autoPlay="true"
-          :showThumbnails="isMobileScreen ? false : true">
-          <template #item="slotProps">
-            <Image :src="slotProps.item.housePhoto" :alt="slotProps.item.altText" :preview="isMobileScreen ? false : true"
-              :imageClass="isMobileScreen ? 'w-full block' : 'block'" />
-          </template>
-          <template #thumbnail="slotProps">
-            <Image :src="slotProps.item.housePhoto" :alt="slotProps.item.altText" imageClass="w-24 h-16 block	" />
-          </template>
-        </Galleria>
-
+      <Galleria :value="images" :numVisible="4" :showItemNavigators="isMobileScreen ? true : false"
+        thumbnailsPosition="right" :circular="true" containerStyle="overflow-hidden" :autoPlay="true"
+        :showThumbnails="isMobileScreen ? false : true">
+        <template #item="slotProps">
+          <Image :src="slotProps.item.housePhoto" :alt="slotProps.item.altText" :preview="isMobileScreen ? false : true"
+            :imageClass="isMobileScreen ? 'w-full block' : 'block'" />
+        </template>
+        <template #thumbnail="slotProps">
+          <Image :src="slotProps.item.housePhoto" :alt="slotProps.item.altText" imageClass="w-24 h-16 block	" />
+        </template>
+      </Galleria>
 
       <div class="max-w-[744px]">
         <div class="flex flex-col gap-4 mb-4 lg:hidden">
@@ -179,8 +175,9 @@ const isSendMessageModalOpen = ref(false)
       </div>
     </div>
 
-    <div class="">
-      <HowToContact v-if="isDesktopScreen" />
+    <!-- Can't conditional render this with useBreakpoints , it will break the app -->
+    <div class="hidden lg:block">
+      <HowToContact />
     </div>
   </div>
 </template>
@@ -189,7 +186,8 @@ const isSendMessageModalOpen = ref(false)
 .p-image {
   height: 100%;
 }
-.p-galleria-content{
+
+.p-galleria-content {
   overflow: hidden;
 }
 </style>
