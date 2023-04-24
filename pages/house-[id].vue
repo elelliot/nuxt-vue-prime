@@ -75,20 +75,19 @@ const isSendMessageModalOpen = ref(false)
 </script>
 
 <template>
-  <div class="flex mt-4 gap-4 max-w-[1980px] justify-around">
-    <div class="flex flex-col items-center lg:items-start gap-4">
-      <!-- TODO max-width: 640px; seems to overlap form and galleria but if removed image navigation arrows  -->
-      <!-- TODO Fix Galleria image behavior with sizing before the thumbnails appear   -->
+  <div class="flex mt-4 gap-4 justify-between max-w-[1980px]">
+    <div class="flex flex-col items-center lg:(items-start w-full) xl:w-2/3 2xl:w-1/2 gap-4">
 
+      <!-- Fix Galleria not filling container -->
       <Galleria :value="images" :numVisible="4" :showItemNavigators="isMobileScreen ? true : false"
         thumbnailsPosition="right" :circular="true" containerStyle="overflow-hidden" :autoPlay="true"
         :showThumbnails="isMobileScreen ? false : true">
         <template #item="slotProps">
           <Image :src="slotProps.item.housePhoto" :alt="slotProps.item.altText" :preview="isMobileScreen ? false : true"
-            :imageClass="isMobileScreen ? 'w-full block' : 'block'" />
+            :imageClass="isMobileScreen ? 'w-full block' : 'w-full block'" />
         </template>
         <template #thumbnail="slotProps">
-          <Image :src="slotProps.item.housePhoto" :alt="slotProps.item.altText" imageClass="w-24 h-16 block	" />
+          <Image :src="slotProps.item.housePhoto" :alt="slotProps.item.altText" imageClass="w-24 h-16 block" />
         </template>
       </Galleria>
 
@@ -178,13 +177,16 @@ const isSendMessageModalOpen = ref(false)
     </div>
 
     <!-- Can't conditional render this with useBreakpoints , it will break the app -->
-    <div class="hidden lg:block">
+    <div class="hidden lg:(block w-1/3 sticky top-4 h-1/2) 2xl:w-1/2">
       <HowToContact />
     </div>
   </div>
 </template>
 
-<style module>
+<style scoped>
+/* :deep(.p-galleria-item-wrapper)	{
+  width: 700px;
+} */
 .p-image {
   height: 100%;
 }
