@@ -1,0 +1,1 @@
+export default defineEventHandler((event:any) => `HelloRoute, ${event.context.params.id}!`)

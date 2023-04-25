@@ -22,6 +22,19 @@ import Menubar from 'primevue/menubar';
 import InputText from 'primevue/inputtext';
 import TabMenu from 'primevue/tabmenu';
 
+const apiCall = await $fetch('/api/hello') //api route with 'api' prefix in "server/api" folder
+const apiCall2 = await $fetch('/hello') //Server Route without 'api' prefix in "server/routes" folder
+
+const apiCall3 = await $fetch('/api/properties/NuxtVerguer') //Dynamic parameters API Route in "server/api/properties/[id]"" folder
+const apiCall4 = await $fetch('/api/properties/NuxtVerguer') //Dynamic parameters API Route in "server/api/properties/[id]"" folder
+
+console.log(apiCall, 'This is server/api/hello.ts')
+console.log(apiCall2, 'This is server/routes/hello.ts')
+console.log(apiCall3, 'This is server/api/[id].ts')
+
+
+
+
 const items2 = ref([
     {
         label: 'Home',
