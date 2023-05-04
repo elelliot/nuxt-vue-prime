@@ -15,7 +15,8 @@
     "@unocss/transformer-variant-group": "^0.51.4",
     "@vueuse/core": "^10.0.2",
     "@vueuse/nuxt": "^10.0.2",
-    "nuxt": "^3.3.3"
+    "nuxt": "^3.3.3",
+    "prisma": "^4.13.0"
   },
   "dependencies": {
     "primeicons": "^6.0.1",
