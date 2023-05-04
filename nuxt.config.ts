@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  
   components: {
     "dirs": [
       { "path": "~/components/ContactFormComponents" },
@@ -18,6 +19,21 @@ export default defineNuxtConfig({
   modules: [
     '@unocss/nuxt',
     '@vueuse/nuxt',
+    [
+      '@vee-validate/nuxt',
+      {
+        // disable or enable auto imports
+        autoImports: true,
+        // Use different names for components
+        // componentNames: {
+        //   Form: 'VeeForm',
+        //   Field: 'VeeField',
+        //   FieldArray: 'VeeFieldArray',
+        //   ErrorMessage: 'VeeErrorMessage',
+        // },
+      },
+    ],
+
   ],
   build: {
     transpile: ["primevue"]
