@@ -10,22 +10,32 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
-  posts Post[]
-}
+// model User {
+//   id    Int     @id @default(autoincrement())
+//   email String  @unique
+//   name  String?
+//   posts Post[]
+// }
 
-model Post {
+// model Post {
+//   id        Int     @id @default(autoincrement())
+//   title     String
+//   content   String?
+//   published Boolean @default(false)
+//   author    User    @relation(fields: [authorId], references: [id])
+//   authorId  Int
+// }
+model Property {
   id        Int     @id @default(autoincrement())
-  title     String
-  content   String?
-  published Boolean @default(false)
-  author    User    @relation(fields: [authorId], references: [id])
-  authorId  Int
+  price     Int 
+  models    Int     @db.SmallInt
+  capacity  Int     @db.SmallInt
+  dimentions Int    @db.SmallInt
+  // address Address?
+  disambiguatingDescription String
+  description String
+  wishlisted Boolean
 }
-
 model Address {
   id        Int     @id @default(autoincrement())
   region  String
@@ -39,25 +49,26 @@ model Address {
   addressLine3 String?
   addressLine4 String?
   postalCode String
+  // property Property @relation(fields: [property_id], references: [id])
+  // property_id Int @unique
 }
-
-model Property {
-  id        Int     @id @default(autoincrement())
-  price     Int 
-  models    Int     @db.SmallInt
-  capacity  Int     @db.SmallInt
-  dimentions Int    @db.SmallInt
-  disambiguatingDescription String
-  description String
-  address_id  Int
-}
-
-
 
 model ContactInfo {
   id  Int     @id @default(autoincrement())
+  email String
+  whatsapp String
   created_at DateTime
   deleted_at DateTime
   updated_at DateTime
   active Boolean
+  // user_id Int 
+}
+
+model User {
+  id  Int @id @default(autoincrement())
+  name String
+  // contactInfo ContactInfo
+  source String
+  // organization_id Int
+  // property_id Int
 }

@@ -19,7 +19,9 @@
     "prisma": "^4.13.0"
   },
   "dependencies": {
+    "@prisma/client": "^4.13.0",
     "@vee-validate/nuxt": "^4.8.6",
+    "@vee-validate/yup": "^4.8.6",
     "primeicons": "^6.0.1",
     "primevue": "^3.26.1"
   }
