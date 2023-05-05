@@ -35,15 +35,19 @@ const { value: source, errorMessage: sourceErrMsg } = useField('source');
 
 
 
-const onSubmit = handleSubmit((values) => {
+const onSubmit = handleSubmit(async(values) => {
     if (values.name && values.source) {
-        useFetch("/api/user/addUser",{
+        const {data:resp} = await useFetch("/api/user/addUser",{
             method:'POST',
             body:{
                 name:values.name,
                 source:values.source
             }
         })
+        if( resp ){
+            showNotification('success', 'Data successfully validated', `Data has been sent correctly ${resp.value}`)
+            resetForm();
+        }
     }
 }, onInvalidSubmit);
 
