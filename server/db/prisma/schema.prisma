@@ -25,50 +25,57 @@ datasource db {
 //   author    User    @relation(fields: [authorId], references: [id])
 //   authorId  Int
 // }
-model Property {
-  id        Int     @id @default(autoincrement())
-  price     Int 
-  models    Int     @db.SmallInt
-  capacity  Int     @db.SmallInt
-  dimentions Int    @db.SmallInt
-  // address Address?
-  disambiguatingDescription String
-  description String
-  wishlisted Boolean
-}
-model Address {
-  id        Int     @id @default(autoincrement())
-  region  String
-  city String
-  country String
-  long Int? @db.SmallInt
-  lat Int? @db.SmallInt
-  streetAddress String
-  addressLine1 String
-  addressLine2 String?
-  addressLine3 String?
-  addressLine4 String?
-  postalCode String
-  // property Property @relation(fields: [property_id], references: [id])
-  // property_id Int @unique
+// model Property {
+//   id        Int     @id @default(autoincrement())
+//   price     Int 
+//   models    Int     @db.SmallInt
+//   capacity  Int     @db.SmallInt
+//   dimentions Int    @db.SmallInt
+//   // address Address?
+//   disambiguatingDescription String
+//   description String
+//   wishlisted Boolean
+// }
+// model Address {
+//   id        Int     @id @default(autoincrement())
+//   region  String
+//   city String
+//   country String
+//   long Int? @db.SmallInt
+//   lat Int? @db.SmallInt
+//   streetAddress String
+//   addressLine1 String
+//   addressLine2 String?
+//   addressLine3 String?
+//   addressLine4 String?
+//   postalCode String
+//   // property Property @relation(fields: [property_id], references: [id])
+//   // property_id Int @unique
+// }
+
+model User {
+  id  Int @id @default(autoincrement())
+  name String
+  source Source? @default(GOOGLE) 
+  contactInfo ContactInfo?
+  // organization_id Int
+  // property_id Int
 }
 
 model ContactInfo {
   id  Int     @id @default(autoincrement())
   email String
   whatsapp String
-  created_at DateTime
-  deleted_at DateTime
-  updated_at DateTime
-  active Boolean
-  // user_id Int 
+  created_at DateTime @default(now())
+  deleted_at DateTime @default(now())
+  updated_at DateTime @default(now())
+  active Boolean? @default(true)
+  person User @relation(fields: [user_id], references: [id])
+  user_id Int @unique
 }
 
-model User {
-  id  Int @id @default(autoincrement())
-  name String
-  // contactInfo ContactInfo
-  source String
-  // organization_id Int
-  // property_id Int
+enum Source {
+  FACEBOOK
+  GOOGLE
+  EMAIL
 }

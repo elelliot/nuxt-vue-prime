@@ -18,9 +18,9 @@ const showNotification = (type, title, message) => {
 
 
 const schema = toTypedSchema(object({
-    // email: string().required().email(),
     name: string().required(),
-    source: string().required(),
+    email: string().required().email(),
+    whatsapp: string().required(),
     // pass: string().required().min(8),
 }));
 
@@ -29,24 +29,28 @@ const { handleSubmit, resetForm } = useForm({
 });
 
 const { value: name, errorMessage: nameErrMsg } = useField('name');
-const { value: source, errorMessage: sourceErrMsg } = useField('source');
+const { value: email, errorMessage: emailErrMsg } = useField('email');
+const { value: whatsapp, errorMessage: whatsappErrMsg } = useField('whatsapp');
 
 
 
 
 
 const onSubmit = handleSubmit(async(values) => {
-    if (values.name && values.source) {
+    if (values.name && values.email && values.whatsapp) {
         const {data:resp} = await useFetch("/api/user/addUser",{
             method:'POST',
             body:{
                 name:values.name,
-                source:values.source
+                email:values.email,
+                whatsapp:values.whatsapp
             }
         })
         if( resp ){
-            showNotification('success', 'Data successfully validated', `Data has been sent correctly ${resp.value}`)
+            showNotification('success', 'Success', `User ${resp.value.name} created Succesfully.`)
             resetForm();
+        } else {
+            showNotification('error', 'Oh No!', `Something went wrong please try again or wait a little time.`)
         }
     }
 }, onInvalidSubmit);
@@ -54,7 +58,6 @@ const onSubmit = handleSubmit(async(values) => {
 
 
 function onInvalidSubmit({ values, errors, results }) {
-    // console.log('Invalid Correo')
     showNotification('error', 'Error in Data', "Data couldn't be sent, please fix them errors")
     console.log(values); // current form values
     console.log(errors); // a map of field names and their first error message
@@ -80,9 +83,14 @@ function onInvalidSubmit({ values, errors, results }) {
                 <small class="p-error" id="text-error">{{ nameErrMsg || '&nbsp;' }}</small>
             </div>
             <div class="">
-                <label for="source">Source</label>
-                <InputText id="source" v-model="source" type="text" class="w-full" :class="{ 'p-invalid': sourceErrMsg }" />
-                <small class="p-error" id="text-error">{{ sourceErrMsg || '&nbsp;' }}</small>
+                <label for="email">Email</label>
+                <InputText id="email" v-model="email" type="text" class="w-full" :class="{ 'p-invalid': emailErrMsg }" />
+                <small class="p-error" id="text-error">{{ emailErrMsg || '&nbsp;' }}</small>
+            </div>
+            <div class="">
+                <label for="whatsapp">Whatsapp</label>
+                <InputText id="whatsapp" v-model="whatsapp" type="text" class="w-full" :class="{ 'p-invalid': whatsappErrMsg }" />
+                <small class="p-error" id="text-error">{{ whatsappErrMsg || '&nbsp;' }}</small>
             </div>
             <!-- <div class="">
                 <label for="pass">Password</label>
