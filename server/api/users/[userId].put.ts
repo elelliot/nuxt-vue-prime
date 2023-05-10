@@ -2,8 +2,9 @@ import { Prisma } from "@prisma/client";
 import bcrypt from "bcrypt";
 
 export default defineEventHandler(async (event: any) => {
+  const { userId }  = event.context.params
   const { name, email, password } = await readBody(event);
-  let user: Prisma.UserCreateInput;
+  let user: Prisma.UserUpdateInput;
   const saltRounds = 10;
 
   const hashPass = await bcrypt.hash(password, saltRounds)
@@ -14,8 +15,10 @@ export default defineEventHandler(async (event: any) => {
     password: hashPass,
   };
 
-  //To do: Handle "Email already used" scenario
-  return prisma.user.create({
-    data: user,
+  return prisma.user.update({
+    data:user,
+    where:{
+      id: Number(userId)
+    }
   });
 });
