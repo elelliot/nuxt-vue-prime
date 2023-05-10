@@ -56,7 +56,9 @@ datasource db {
 model User {
   id  Int @id @default(autoincrement())
   name String
-  source Source? @default(GOOGLE) 
+  email String?
+  password String
+  source Source? @default(EMAIL) 
   contactInfo ContactInfo?
   // organization_id Int
   // property_id Int
@@ -64,8 +66,8 @@ model User {
 
 model ContactInfo {
   id  Int     @id @default(autoincrement())
-  email String
-  whatsapp String
+  contactEmail String?
+  whatsapp String?
   created_at DateTime @default(now())
   deleted_at DateTime @default(now())
   updated_at DateTime @default(now())
