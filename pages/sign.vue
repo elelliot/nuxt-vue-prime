@@ -34,7 +34,7 @@ const { value: password, errorMessage: passwordErrMsg } = useField('password');
 
 const onSubmit = handleSubmit(async(values) => {
     if (values.name && values.email && values.password) {
-        const { data:resp } = await $fetch("/api/users",{
+        const resp = await $fetch("/api/users/user",{
             method:'POST',
             body:{
                 name:values.name,
@@ -43,7 +43,7 @@ const onSubmit = handleSubmit(async(values) => {
             }
         })
         if( resp ){
-            showNotification('success', 'Success', `User ${resp.value.name} created Succesfully.`)
+            showNotification('success', 'Success', `User ${resp.name} created Succesfully.`)
             resetForm();
         } else {
             showNotification('error', 'Oh No!', `Something went wrong please try again or wait a little time.`)
