@@ -10,18 +10,20 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^7.6.0",
+    "@types/bcrypt": "^5.0.0",
     "@unocss/nuxt": "^0.51.4",
     "@unocss/preset-wind": "^0.51.4",
     "@unocss/transformer-variant-group": "^0.51.4",
     "@vueuse/core": "^10.0.2",
     "@vueuse/nuxt": "^10.0.2",
     "nuxt": "^3.3.3",
-    "prisma": "^4.13.0"
+    "prisma": "^4.14.0"
   },
   "dependencies": {
-    "@prisma/client": "^4.13.0",
+    "@prisma/client": "^4.14.0",
     "@vee-validate/nuxt": "^4.8.6",
     "@vee-validate/yup": "^4.8.6",
+    "bcrypt": "^5.1.0",
     "primeicons": "^6.0.1",
     "primevue": "^3.26.1"
   }
