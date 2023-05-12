@@ -20,16 +20,13 @@ const schema = toTypedSchema(object({
     password: string().required().min(8),
 }));
 
-const { handleSubmit, resetForm } = useForm({
+const { handleSubmit } = useForm({
     validationSchema: schema
 });
 
 const { value: name, errorMessage: nameErrMsg } = useField('name');
 const { value: email, errorMessage: emailErrMsg } = useField('email');
 const { value: password, errorMessage: passwordErrMsg } = useField('password');
-
-
-
 
 
 const onSubmit = handleSubmit(async(values) => {
@@ -44,7 +41,7 @@ const onSubmit = handleSubmit(async(values) => {
         })
         if( resp ){
             showNotification('success', 'Success', `User ${resp.name} created Succesfully.`)
-            resetForm();
+            navigateTo('/login')
         } else {
             showNotification('error', 'Oh No!', `Something went wrong please try again or wait a little time.`)
         }
@@ -62,10 +59,10 @@ function onInvalidSubmit({ values, errors, results }) {
 </script>
 
 <template>
-    <div class="flex justify-center">
+    <div class="max-w-full py-4 sm:mx-12 lg:(max-w-[1024px] mx-auto)">
         <div class="flex flex-col items-center">
-            <h1>Sign in</h1>
-            <form @submit="onSubmit" class="flex flex-col mt-8 gap-4 w-2xl">
+            <span class="text-4xl font-semibold">Sign in</span>
+            <form @submit="onSubmit" class="flex flex-col mt-12 w-full">
                 <div>
                     <label for="name">Name</label>
                     <InputText id="name" v-model="name" type="text" class="w-full" :class="{ 'p-invalid': nameErrMsg }" />
@@ -81,10 +78,9 @@ function onInvalidSubmit({ values, errors, results }) {
                     <Password v-model="password" id="password" toggleMask  class="w-full p-fluid" :class="{ 'p-invalid': passwordErrMsg }"/>
                     <small class="p-error" id="password-error">{{ passwordErrMsg || '&nbsp;' }}</small>
                 </div>
-                <Button type="submit" label="Create User" />
+                <Button type="submit" label="Create User" class="mt-12"/>
             </form>
         </div>
-
         <Toast />
     </div>
 </template>
