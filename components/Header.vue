@@ -49,7 +49,7 @@ const linkStyle = "py-2 px-2 mx-1 no-underline text-2xl transition-colors transi
           </template>
           <template #end>
             <nav class="flex justify-center">
-            <NuxtLink activeClass="text-white bg-black" :class="linkStyle" to="/about">Home</NuxtLink>
+            <NuxtLink activeClass="text-white bg-black" :class="linkStyle" to="/login">Log In</NuxtLink>
             <NuxtLink activeClass="text-white bg-black" :class="linkStyle" to="/sign">Sign In</NuxtLink>
         </nav>
           </template>

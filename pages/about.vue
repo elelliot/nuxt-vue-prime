@@ -61,7 +61,7 @@ function onInvalidSubmit({ values, errors, results }) {
 <template>
     <div class="flex justify-center">
         <div class="flex flex-col items-center">
-            <h1>Log in</h1>
+            <h1>About Playground</h1>
             <form @submit="onSubmit" class="flex flex-col mt-8 gap-4 w-2xl">
                 <div>
                     <label for="email">Email</label>
@@ -75,7 +75,7 @@ function onInvalidSubmit({ values, errors, results }) {
                         :class="{ 'p-invalid': passwordErrMsg }" />
                     <small class="p-error" id="password-error">{{ passwordErrMsg || '&nbsp;' }}</small>
                 </div>
-                <Button type="submit" label="Create User" />
+                <Button type="submit" label="Login" />
             </form>
         </div>
         <Toast />
