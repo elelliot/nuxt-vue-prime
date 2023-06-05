@@ -25,17 +25,33 @@ datasource db {
 //   author    User    @relation(fields: [authorId], references: [id])
 //   authorId  Int
 // }
-// model Property {
-//   id        Int     @id @default(autoincrement())
-//   price     Int 
-//   models    Int     @db.SmallInt
-//   capacity  Int     @db.SmallInt
-//   dimentions Int    @db.SmallInt
-//   // address Address?
-//   disambiguatingDescription String
-//   description String
-//   wishlisted Boolean
-// }
+model Property {
+  id                        Int     @id @default(autoincrement())
+  price                     Int
+  negotiable                Boolean
+  models                    Int     @db.SmallInt
+  rooms                     Int     @db.SmallInt
+  minSize                   Int     @db.SmallInt
+  maxSize                   Int     @db.SmallInt
+  // address Address?
+  disambiguatingDescription String
+  description               String
+  // wishlisted                Boolean
+
+  // housePhoto String,
+  //   housePrice: string,
+  //   houseModels: number,
+  //   houseCapacity: number,
+  //   houseMinSize: number,
+  //   houseMaxSize: number,
+  //   houseAddress: string,
+  //   streetName: string,
+  //   houseBuildingNumber: string,
+  //   houseAd: string,
+  //   houseDescription: string,
+  //   houseID: string
+}
+
 // model Address {
 //   id        Int     @id @default(autoincrement())
 //   region  String
@@ -54,26 +70,26 @@ datasource db {
 // }
 
 model User {
-  id  Int @id @default(autoincrement())
-  name String
-  email String? @unique
-  password String
-  source Source? @default(EMAIL) 
+  id          Int          @id @default(autoincrement())
+  name        String
+  email       String?      @unique
+  password    String
+  source      Source?      @default(EMAIL)
   contactInfo ContactInfo?
   // organization_id Int
   // property_id Int
 }
 
 model ContactInfo {
-  id  Int     @id @default(autoincrement())
+  id           Int      @id @default(autoincrement())
   contactEmail String?
-  whatsapp String?
-  created_at DateTime @default(now())
-  deleted_at DateTime @default(now())
-  updated_at DateTime @default(now())
-  active Boolean? @default(true)
-  person User @relation(fields: [user_id], references: [id])
-  user_id Int @unique
+  whatsapp     String?
+  created_at   DateTime @default(now())
+  deleted_at   DateTime @default(now())
+  updated_at   DateTime @default(now())
+  active       Boolean? @default(true)
+  person       User     @relation(fields: [user_id], references: [id])
+  user_id      Int      @unique
 }
 
 enum Source {

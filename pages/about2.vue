@@ -1,8 +1,8 @@
-<script setup lang="ts">
+<script setup>
 import InputText from "primevue/inputtext";
 import Password from "primevue/password";
 import Button from "primevue/button";
-import Toast, { type ToastMessageOptions } from "primevue/toast";
+import Toast from "primevue/toast";
 import FileUpload from "primevue/fileupload";
 import Checkbox from "primevue/checkbox";
 import InputNumber from "primevue/inputnumber";
@@ -12,48 +12,34 @@ import Textarea from "primevue/textarea";
 import { useToast } from "primevue/usetoast";
 import { useForm, useField } from "vee-validate";
 import { toTypedSchema } from "@vee-validate/yup";
-import { object, string, number, boolean } from "yup";
-
-interface PropertyForm {
-  price: number;
-  negotiable: boolean;
-  models: { name: string | number; value: string | number };
-  rooms: { name: string | number; value: string | number };
-  minSize: number;
-  maxSize: number;
-  streetName: string;
-  houseBuildingNumber: string;
-  houseAd: string;
-  houseDescription: string;
-}
+import { object, array, string, number, boolean } from "yup";
 
 const toast = useToast();
-const showNotification = (
-  type: ToastMessageOptions["severity"],
-  title: string,
-  message: string
-) => {
+const showNotification = (type, title, message) => {
   toast.add({ severity: type, summary: title, detail: message, life: 3000 });
 };
-// const price = ref(0);
-// const negotiable = ref(false);
-// const models = ref(0);
-// const rooms = ref(0);
-// const minSize = ref(50);
-// const maxSize = ref(100);
-// const streetName = ref("");
-// const houseBuildingNumber = ref("");
-// const houseAd = ref("");
-// const houseDescription = ref("");
+
+const housePhotos = ref([]);
+const price = ref(0);
+const negotiable = ref(false);
+const models = ref(0);
+const rooms = ref(0);
+const minSize = ref(0);
+const maxSize = ref(20);
+const streetName = ref("");
+const houseBuildingNumber = ref("");
+const houseAd = ref("");
+const houseDescription = ref("");
 
 const schema = toTypedSchema(
   object({
+    housePhotos: array().required(),
     price: number().integer().required(),
     negotiable: boolean(),
-    models: number().integer(),
-    rooms: number().integer(),
-    minSize: number().integer(),
-    maxSize: number().integer(),
+    models: number().integer().required(),
+    rooms: number().integer().required(),
+    minSize: number().integer().required(),
+    maxSize: number().integer().required(),
     streetName: string().required(),
     houseBuildingNumber: string().required(),
     houseAd: string(),
@@ -61,13 +47,14 @@ const schema = toTypedSchema(
   })
 );
 
-const { handleSubmit } = useForm<PropertyForm>({
+const { handleSubmit, errors, errorBag } = useForm({
   validationSchema: schema,
   initialValues: {
-    price: 100000,
+    housePhotos: [""],
+    price: 0,
     negotiable: false,
-    models: { name: "0", value: "0" },
-    rooms: { name: 1, value: 1 },
+    models: 1,
+    rooms: 1,
     minSize: 50,
     maxSize: 100,
     streetName: "",
@@ -75,20 +62,7 @@ const { handleSubmit } = useForm<PropertyForm>({
     houseAd: "",
     houseDescription: "",
   },
-  validateOnMount: true,
 });
-const { value: price, errorMessage: priceErrMsg } = useField("price");
-const { value: negotiable } = useField("negotiable");
-const { value: models } = useField("models");
-const { value: rooms } = useField("rooms");
-const { value: minSize } = useField("minSize");
-const { value: maxSize } = useField("maxSize");
-const { value: streetName, errorMessage: streetNameErrMsg } =
-  useField("streetName");
-const { value: houseBuildingNumber, errorMessage: houseBuildingNumberErrMsg } =
-  useField("houseBuildingNumber");
-const { value: houseAd } = useField("houseAd");
-const { value: houseDescription } = useField("houseDescription");
 
 const onSubmit = handleSubmit(async (values) => {
   if (values) {
@@ -127,8 +101,15 @@ const onSubmit = handleSubmit(async (values) => {
   }
 }, onInvalidSubmit);
 
-// function onInvalidSubmit({ values, errors, results }) {
-function onInvalidSubmit() {
+const onAdvancedUpload = (event) => {
+  showNotification("success", "Success", "Image uploaded successfully.");
+};
+
+const onSelect = (event) => {
+  console.log(event.files);
+};
+
+function onInvalidSubmit({ values, errors, results }) {
   showNotification(
     "error",
     "Error in Data",
@@ -140,110 +121,100 @@ function onInvalidSubmit() {
 }
 
 const modelsNumber = ref([
-  { name: "0", value: "0" },
-  { name: 1, value: 1 },
-  { name: 2, value: 2 },
-  { name: 3, value: 3 },
-  { name: 4, value: 4 },
-  { name: 5, value: 5 },
-  { name: 6, value: 6 },
-  { name: 7, value: 7 },
-  { name: 8, value: 8 },
-  { name: 9, value: 9 },
-  { name: 10, value: 10 },
+  { label: 0, value: 0 },
+  { label: 1, value: 1 },
+  { label: 2, value: 2 },
+  { label: 3, value: 3 },
+  { label: 4, value: 4 },
+  { label: 5, value: 5 },
+  { label: 6, value: 6 },
+  { label: 7, value: 7 },
+  { label: 8, value: 8 },
+  { label: 9, value: 9 },
+  { label: 10, value: 10 },
 ]);
 const roomsNumber = ref([
-  { name: 1, value: 1 },
-  { name: 2, value: 2 },
-  { name: 3, value: 3 },
-  { name: 4, value: 4 },
-  { name: 5, value: 5 },
-  { name: 6, value: 6 },
-  { name: 7, value: 7 },
-  { name: 8, value: 8 },
-  { name: 9, value: 9 },
-  { name: 10, value: 10 },
-  { name: 11, value: 11 },
-  { name: 12, value: 12 },
-  { name: 13, value: 13 },
-  { name: 14, value: 14 },
-  { name: 15, value: 15 },
-  { name: 16, value: 16 },
-  { name: 17, value: 17 },
-  { name: 18, value: 18 },
-  { name: 19, value: 19 },
-  { name: 20, value: 20 },
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
 ]);
 </script>
 
 <template>
   <div class="max-w-full py-4 sm:mx-12 lg:(max-w-[1024px] mx-auto)">
+    <pre>{{ errors }}</pre>
     <div class="flex flex-col items-center">
       <span class="text-4xl font-semibold">Post Property to Sell</span>
-      <form @submit="onSubmit" class="flex flex-col mt-12">
+      <form @submit="onSubmit" class="flex flex-col mt-12 w-full">
+        <div class="mb-4">
+          <label for="housePhoto">Photos</label>
+          <div class="card">
+            <FileUpload
+              id="housePhoto"
+              name="housePhotos"
+              url="/api/properties/properties"
+              @upload="onAdvancedUpload($event)"
+              @select="onSelect($event)"
+              :multiple="true"
+              accept="image/*"
+              :maxFileSize="1000000"
+            >
+              <template #empty>
+                <p>Drag and drop files to here to upload.</p>
+              </template>
+            </FileUpload>
+          </div>
+        </div>
         <div class="flex flex-col">
           <label for="price">Price</label>
-          <InputNumber
-            id="price"
-            v-model="(price as number)"
-            inputId="integeronly"
-            :class="{ 'p-invalid': priceErrMsg }"
-          />
-          <small class="p-error" id="text-error">{{
-            priceErrMsg || "&nbsp;"
-          }}</small>
+          <InputNumber v-model="price" id="price" inputId="integeronly" />
         </div>
 
         <div class="flex flex-col">
           <label for="negotiable">Negotiable?</label>
           <Checkbox v-model="negotiable" id="negotiable" :binary="true" />
         </div>
-        <div class="flex gap-2">
-          <div class="flex flex-col">
-            <label for="models">Models</label>
-            <Dropdown
-              v-model="(models as number)"
-              id="models"
-              :options="modelsNumber"
-              option-label="name"
-              class="md:w-14rem"
-            />
-          </div>
-          <div class="flex flex-col">
-            <label for="rooms">Rooms</label>
-            <Dropdown
-              v-model="(rooms as number)"
-              id="rooms"
-              :options="roomsNumber"
-              option-label="name"
-              class="md:w-14rem"
-            />
-          </div>
+        <div class="flex flex-col">
+          <label for="models">Models</label>
+          <Dropdown
+            v-model="models"
+            id="models"
+            :options="modelsNumber"
+            optionLabel="label"
+            class="w-full md:w-14rem"
+          />
+        </div>
+        <div class="flex flex-col">
+          <label for="rooms">Rooms</label>
+          <Dropdown
+            v-model="rooms"
+            id="rooms"
+            :options="roomsNumber"
+            class="w-full md:w-14rem"
+          />
         </div>
         <div class="flex flex-col">
           <label for="minSize">Minimum Size</label>
           <InputNumber
-            v-model="(minSize as number)"
+            v-model="minSize"
             id="minSize"
             inputId="minmax-buttons"
             showButtons
             :min="0"
-            :max="50"
+            :max="20"
           />
           <label for="maxSize">Maximum Size</label>
           <InputNumber
-            v-model="(maxSize as number)"
+            v-model="maxSize"
             id="maxSize"
             inputId="minmax-buttons"
             showButtons
-            :min="51"
+            :min="20"
             :max="100"
           />
         </div>
         <div class="flex flex-col">
           <label for="streetName">Street Name</label>
           <InputText
-            v-model="(streetName as string)"
+            v-model="streetName"
             id="streetName"
             type="text"
             class="w-full"
@@ -252,19 +223,19 @@ const roomsNumber = ref([
         <div class="flex flex-col">
           <label for="houseBuildingNumber">House building number</label>
           <InputText
-            v-model="houseBuildingNumber as string"
+            v-model="houseBuildingNumber"
             id="houseBuildingNumber"
             type="text"
           />
         </div>
         <div class="flex flex-col">
           <label for="houseAd">Title</label>
-          <InputText v-model="(houseAd as string)" id="houseAd" type="text" />
+          <InputText v-model="houseAd" id="houseAd" type="text" />
         </div>
         <div class="flex flex-col">
           <label for="houseDescription">Title</label>
           <Textarea
-            v-model="(houseDescription as string)"
+            v-model="houseDescription"
             id="houseDescription"
             autoResize
             rows="5"
@@ -272,7 +243,7 @@ const roomsNumber = ref([
           />
         </div>
 
-        <Button type="submit" label="Post Property" class="mt-12" />
+        <Button type="submit" label="Create Post" class="mt-12" />
       </form>
     </div>
     <Toast />
